@@ -1,0 +1,128 @@
+@import 'variables';
+@import 'mixins';
+
+html,
+body,
+*,
+input,
+textarea,
+button,
+label,
+span {
+  font-family: $font-secondary, sans-serif;
+}
+
+.font {
+  &-main {
+    &-xxl {
+      font-weight: 500;
+      font-size: 42px;
+      line-height: 52px;
+    }
+
+    &-xl {
+      font-weight: 500;
+      font-size: 36px;
+      line-height: 44px;
+    }
+
+    &-l {
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 40px;
+    }
+
+    &-m {
+      font-weight: 500;
+      font-size: 28px;
+      line-height: 36px;
+    }
+
+    &-s {
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 28px;
+    }
+
+    &-xs, &-xs-bold {
+      font-size: 18px;
+      line-height: 24px;
+    }
+
+    &-xs {
+      font-weight: normal;
+    }
+
+    &-xs-bold {
+      font-weight: 500;
+    }
+  }
+
+  &-additional {
+    &-l, &-l-bold {
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    &-l {
+      font-weight: normal;
+    }
+
+    &-l-bold {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    &-m {
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    &-s, &-s-bold {
+      font-size: 14px;
+      line-height: 20px;
+    }
+
+    &-s {
+      font-weight: normal;
+    }
+
+    &-s-bold {
+      font-weight: 500;
+    }
+
+    &-xs {
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 16px;
+    }
+  }
+
+  &-button {
+    &-m {
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 24px;
+    }
+
+    &-s {
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  &-caption {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+
+    &-xs {
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 16px;
+    }
+  }
+}
