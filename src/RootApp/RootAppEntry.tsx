@@ -6,6 +6,7 @@ import Favicon from 'react-favicon';
 
 import store from './redux/store';
 import RootApp from './RootApp';
+import {ErrorBoundary} from '../common/components/ErrorBoundary/ErrorBoundary';
 
 export type RootAppEntryComponent = () => JSX.Element;
 
@@ -14,12 +15,14 @@ export type RootAppEntryComponent = () => JSX.Element;
  */
 const RootAppEntry: RootAppEntryComponent = () => (
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <Favicon url="/static/media/favicon.svg" />
-        <RootApp />
-      </BrowserRouter>
-    </Provider>
+    <ErrorBoundary globalError>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Favicon url="/static/media/favicon.svg" />
+          <RootApp />
+        </BrowserRouter>
+      </Provider>
+    </ErrorBoundary>
   </React.StrictMode>
 );
 

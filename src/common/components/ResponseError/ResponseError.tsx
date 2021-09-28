@@ -1,11 +1,11 @@
 import './ResponseError.scss';
 import React from 'react';
+import {WarningOutlined} from '@ant-design/icons';
 
 import {EErrorStatus, ErrorHeadersOfCodes, ErrorTextsOfCodes} from '../../constants/errorConst';
-import {isEmpty} from '../../utils/commonUtils/commonUtils';
 
 export type TErrorProps = {
-  error: EErrorStatus | null;
+  status?: EErrorStatus;
 };
 
 export type TErrorComponent = (props: TErrorProps) => JSX.Element;
@@ -14,29 +14,22 @@ export type TErrorComponent = (props: TErrorProps) => JSX.Element;
  * Компонент для отрисовки ошибки
  * @param error - Номер ошибка
  */
-const ResponseError: TErrorComponent = ({error}) => {
-  const errorCode: EErrorStatus = !error ? EErrorStatus._500 : error;
-  const errorText: string = isEmpty(ErrorHeadersOfCodes[errorCode])
-    ? ErrorHeadersOfCodes[EErrorStatus._500]
-    : ErrorHeadersOfCodes[errorCode];
-  return (
-    <div className="error-component">
-      <div className="error-component__container">
-        <div className="error-component__icon">
-          {/* TODO Добавить изображения */}
-          IMAGE
-        </div>
-        <div className="error-component__label">
-          <h3>
-            {errorCode} - {errorText}
-          </h3>
-        </div>
-        <div className="error-component__text">
-          <h6>{ErrorTextsOfCodes[errorCode]}</h6>
-        </div>
+const ResponseError: TErrorComponent = ({status = EErrorStatus._500}) => (
+  <div className="error-component">
+    <div className="error-component__container">
+      <div className="error-component__icon">
+        <WarningOutlined />
+      </div>
+      <div className="error-component__label">
+        <h3 className="font-main-xl">
+          {status} - {ErrorHeadersOfCodes[status]}
+        </h3>
+      </div>
+      <div className="error-component__text">
+        <p className="font-main-xs">{ErrorTextsOfCodes[status]}</p>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 export default React.memo(ResponseError);

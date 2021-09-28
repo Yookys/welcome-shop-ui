@@ -1,5 +1,6 @@
 import {AxiosError, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {IObj} from './commonModel';
+import {EErrorStatus} from '../constants/errorConst';
 
 /** Общая модель запроса */
 export type TRequest = <T = any, K = TErrorResponseBody>(url: string, requestConfig: IRequestConfig<T, K>) => void;
@@ -35,6 +36,6 @@ export type IUseAxios = () => TUseAxiosReturns;
 
 /** Модель ошибки по-умолчанию */
 export type TErrorResponseBody = {
-  status: number;
+  status: EErrorStatus;
   statusText: string;
 };

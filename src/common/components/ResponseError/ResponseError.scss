@@ -20,6 +20,14 @@
     text-align: center;
   }
 
+  &__icon {
+    & svg {
+      fill: $red-60;
+      width: 65px;
+      height: 65px;
+    }
+  }
+
   &__label {
     margin: 20px 0;
   }

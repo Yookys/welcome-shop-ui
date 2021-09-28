@@ -1,11 +1,14 @@
-import {AxiosResponse} from 'axios';
+import {AxiosError, AxiosResponse} from 'axios';
 import {useState} from 'react';
 
 import useSettingApi from '../api/useSettingApi';
 import {ResponseSettingList} from '../models/settingReducerModels';
 import useSettings from './useSettings';
+import {TErrorResponseBody} from '../../common/models/axiosModels';
+import {isEmpty} from '../../common/utils/commonUtils/commonUtils';
 
 export type TUseSettingRestReturned = {
+  errorStatusSettingRest: number | null | undefined;
   isErrorSettingRest: boolean;
   isLoadingSettingRest: boolean;
   loadSettingList: () => void;
@@ -22,7 +25,7 @@ const useSettingRest: TUseSettingRest = (isLoadingInitValue = false) => {
   /** Используем хук для работы с хранилищем */
   const {onSetSettings} = useSettings();
   /** Флаг неуспешного запроса */
-  const [isError, setIsError] = useState<boolean>(false);
+  const [errorStatus, setErrorStatus] = useState<number | null | undefined>(null);
   /** Флаг выполнения запроса */
   const [isLoading, setIsLoading] = useState<boolean>(isLoadingInitValue);
 
@@ -35,7 +38,8 @@ const useSettingRest: TUseSettingRest = (isLoadingInitValue = false) => {
   /**
    * Обработка запроса с ошибкой списка параметров
    */
-  const onReject = () => setIsError(true);
+  const onReject = (reject: AxiosError<TErrorResponseBody>) =>
+    setErrorStatus(reject.response?.status || reject.response?.data.status);
 
   /**
    * Обработка окончания запроса
@@ -47,7 +51,12 @@ const useSettingRest: TUseSettingRest = (isLoadingInitValue = false) => {
    */
   const loadSettingList = () => onGetSettingsList({onSuccess, onReject, onFinally});
 
-  return {isErrorSettingRest: isError, isLoadingSettingRest: isLoading, loadSettingList};
+  return {
+    isErrorSettingRest: !isEmpty(errorStatus),
+    errorStatusSettingRest: errorStatus,
+    isLoadingSettingRest: isLoading,
+    loadSettingList,
+  };
 };
 
 export default useSettingRest;

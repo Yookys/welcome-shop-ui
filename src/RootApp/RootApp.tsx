@@ -2,10 +2,11 @@ import React, {useEffect} from 'react';
 
 import ModalStack from './components/ModalStack/ModalStack';
 import RootLayout from './layouts/RootLayout';
-import {ErrorBoundary} from '../common/components/ErrorBoundary/ErrorBoundary';
 import useSettingRest from './hooks/useSettingRest';
 import useSettings from './hooks/useSettings';
 import {isEmpty} from '../common/utils/commonUtils/commonUtils';
+import ResponseError from '../common/components/ResponseError/ResponseError';
+import Loader from '../common/components/Loader/Loader';
 
 export type RootAppComponent = () => JSX.Element;
 
@@ -14,7 +15,7 @@ export type RootAppComponent = () => JSX.Element;
  */
 const RootApp: RootAppComponent = () => {
   /** Используем методы для работы с МКС */
-  const {isLoadingSettingRest, isErrorSettingRest, loadSettingList} = useSettingRest(true);
+  const {isLoadingSettingRest, isErrorSettingRest, errorStatusSettingRest, loadSettingList} = useSettingRest(true);
   /** Используем хранилище параметров системы */
   const {setting} = useSettings();
 
@@ -32,24 +33,24 @@ const RootApp: RootAppComponent = () => {
    */
   const renderApp = (): JSX.Element => {
     /** Произошла ошибка */
-    if (isErrorSettingRest) {
-      return <p>Error</p>;
+    if (isErrorSettingRest && errorStatusSettingRest) {
+      return <ResponseError status={errorStatusSettingRest} />;
     }
 
-    /** Идёт загрузка или параметры пустые */
+    /** Идёт загрузка параметров или параметры пустые */
     if (isLoadingSettingRest || isEmpty(setting)) {
-      return <p>Loading</p>;
+      return <Loader />;
     }
 
-    /** Отрисовка  */
+    /** Отрисовка */
     return <RootLayout />;
   };
 
   return (
-    <ErrorBoundary globalError>
+    <>
       {renderApp()}
       <ModalStack />
-    </ErrorBoundary>
+    </>
   );
 };
 
