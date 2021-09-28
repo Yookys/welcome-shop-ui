@@ -5,7 +5,6 @@ export type TMode = 'development' | 'production';
 
 type TEnv = {
   NODE_ENV?: 'development' | 'production';
-  CONFIG?: 'development' | 'prom';
   VERSION?: string;
   SCHEMA?: string;
   HOST?: string;

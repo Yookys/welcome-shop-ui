@@ -30,7 +30,7 @@ const initApp = (app: JSX.Element): void => {
    * Инициализация, точка входа
    * Запрашиваем конфигурацию с URL`s endpoint`s, обрабатываем её и запускаем ПО
    */
-  Axios.get(`/static/configs/${process.env.CONFIG}.json`)
+  Axios.get(`/static/configs/${process.env.NODE_ENV}.json`)
     .then((responseConfig) => {
       configUtil.init(responseConfig.data);
       onSuccessInit();
