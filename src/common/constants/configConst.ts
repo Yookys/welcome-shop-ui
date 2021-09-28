@@ -1,8 +1,13 @@
-import {IObj} from '../models/commonModel';
+export enum EServices {
+  setting = 'setting',
+}
 
 /**
  * Перечень сервисов, которые должны быть обязательно сконфигурированы
  */
-const services: IObj = {};
+const services: Record<EServices, string> = {
+  /** Сервис параметров */
+  [EServices.setting]: 'SETTING',
+};
 
 export default services;

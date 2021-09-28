@@ -1,5 +1,9 @@
 {
   "DEBUG": false,
   "API_BASEPATH": "/api/v1",
-  "SERVICES": {}
+  "SERVICES": {
+    "SETTING": {
+      "PATH": "${API_BASEPATH}/setting"
+    }
+  }
 }

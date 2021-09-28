@@ -1,6 +1,8 @@
 import './ErrorWrapper.scss';
 import React, {ErrorInfo} from 'react';
 
+import Logo from '../../assets/img/logo_full_vertical_short.svg';
+
 export type TErrorWrapperProps = {
   error?: Error;
   errorInfo?: ErrorInfo;
@@ -15,6 +17,9 @@ export type TErrorWrapperComponent = (props: TErrorWrapperProps) => JSX.Element;
  */
 const ErrorWrapper: TErrorWrapperComponent = ({error, errorInfo}) => (
   <div className="error-wrapper">
+    <div className="error-wrapper__logo">
+      <Logo />
+    </div>
     <div className="error-wrapper__container">
       <h3 className="error-wrapper__title">
         Что-то пошло не так... <b>({error?.name})</b>

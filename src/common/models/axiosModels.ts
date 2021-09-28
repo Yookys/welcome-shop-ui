@@ -2,10 +2,10 @@ import {AxiosError, AxiosRequestConfig, AxiosResponse} from 'axios';
 import {IObj} from './commonModel';
 
 /** Общая модель запроса */
-export type TRequest = <T = any, K = any>(url: string, requestConfig: IRequestConfig<T, K>) => void;
+export type TRequest = <T = any, K = TErrorResponseBody>(url: string, requestConfig: IRequestConfig<T, K>) => void;
 
 /** Общая конфигурация запроса */
-export interface IRequestConfig<T = any, K = any> {
+export interface IRequestConfig<T = any, K = TErrorResponseBody> {
   queryParams?: IObj;
   body?: IObj;
   configuration?: AxiosRequestConfig;
@@ -37,4 +37,4 @@ export type IUseAxios = () => TUseAxiosReturns;
 export type TErrorResponseBody = {
   status: number;
   statusText: string;
-}
+};

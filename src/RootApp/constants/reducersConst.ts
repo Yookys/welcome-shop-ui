@@ -5,3 +5,8 @@ export enum EModalStackActions {
   MODAL_STACK_CLOSE_ALL = 'MODAL_STACK_CLOSE_ALL',
   MODAL_STACK_EDIT_PROPS = 'MODAL_STACK_EDIT_PROPS',
 }
+
+/** Перечень возможных событий в хранилище параметров */
+export enum ESettingActions {
+  SETTING_SET = 'SETTING_SET',
+}
