@@ -3,7 +3,7 @@ import {useState} from 'react';
 
 import useSettingApi from '../api/useSettingApi';
 import {ResponseSettingList} from '../models/settingReducerModels';
-import useSettings from './useSettings';
+import useSettingsState from './useSettingsState';
 import {TErrorResponseBody} from '../../common/models/axiosModels';
 import {isEmpty} from '../../common/utils/commonUtils/commonUtils';
 
@@ -23,7 +23,7 @@ const useSettingRest: TUseSettingRest = (isLoadingInitValue = false) => {
   /** Используем API сервиса */
   const {onGetSettingsList} = useSettingApi();
   /** Используем хук для работы с хранилищем */
-  const {onSetSettings} = useSettings();
+  const {onSetSettings} = useSettingsState();
   /** Флаг неуспешного запроса */
   const [errorStatus, setErrorStatus] = useState<number | null | undefined>(null);
   /** Флаг выполнения запроса */

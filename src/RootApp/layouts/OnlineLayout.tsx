@@ -7,7 +7,7 @@ export type TRootLayoutComponent = () => JSX.Element;
 /**
  * Корневые слои роутинга
  */
-const RootLayout: TRootLayoutComponent = () => (
+const OnlineLayout: TRootLayoutComponent = () => (
   <Switch>
     {/* Главная страница */}
     <Route exact path="/" component={MainPage} />
@@ -16,4 +16,4 @@ const RootLayout: TRootLayoutComponent = () => (
   </Switch>
 );
 
-export default React.memo(RootLayout);
+export default React.memo(OnlineLayout);

@@ -20,7 +20,7 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
   return {
     mode,
     bail: mode !== 'development',
-    target: mode === 'production' ? 'browserslist' : 'web',
+    target: mode === 'production' ? ['web', 'es5'] : 'web',
     devtool: mode === 'production' ? 'source-map' : 'inline-source-map',
     entry: ['react-hot-loader/patch', path.resolve(path.dirname(__dirname), 'src', 'index')],
     output: {

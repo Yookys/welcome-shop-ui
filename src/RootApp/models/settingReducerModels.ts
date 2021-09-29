@@ -46,6 +46,7 @@ export type TSettingReducer = (state: TSettingState, payload: TActionSettingStor
 export type TUseSettingsReturned = {
   setting: TSettingState;
   onSetSettings: (settings: ResponseSettingList) => void;
+  isOnline: () => boolean;
 };
 
 /** Модуль хука для работы с хранилищем */

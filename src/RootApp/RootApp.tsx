@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 
 import ModalStack from './components/ModalStack/ModalStack';
-import RootLayout from './layouts/RootLayout';
-import useSettingRest from './hooks/useSettingRest';
-import useSettings from './hooks/useSettings';
-import {isEmpty} from '../common/utils/commonUtils/commonUtils';
 import ResponseError from '../common/components/ResponseError/ResponseError';
 import Loader from '../common/components/Loader/Loader';
+import OnlineLayout from './layouts/OnlineLayout';
+import OfflineLayout from './layouts/OfflineLayout';
+import useSettingRest from './hooks/useSettingRest';
+import useSettingsState from './hooks/useSettingsState';
+import {isEmpty} from '../common/utils/commonUtils/commonUtils';
 
 export type RootAppComponent = () => JSX.Element;
 
@@ -17,7 +18,7 @@ const RootApp: RootAppComponent = () => {
   /** Используем методы для работы с МКС */
   const {isLoadingSettingRest, isErrorSettingRest, errorStatusSettingRest, loadSettingList} = useSettingRest(true);
   /** Используем хранилище параметров системы */
-  const {setting} = useSettings();
+  const {setting, isOnline} = useSettingsState();
 
   console.log(isErrorSettingRest, isLoadingSettingRest, setting);
 
@@ -42,8 +43,13 @@ const RootApp: RootAppComponent = () => {
       return <Loader />;
     }
 
+    /** Проверка на доступность системы */
+    if (!isOnline()) {
+      return <OfflineLayout />;
+    }
+
     /** Отрисовка */
-    return <RootLayout />;
+    return <OnlineLayout />;
   };
 
   return (

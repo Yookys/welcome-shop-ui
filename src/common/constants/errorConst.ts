@@ -7,7 +7,8 @@ export enum EErrorStatus {
   _403 = 403,
   _404 = 404,
   _500 = 500,
-  _503 = 403,
+  _503 = 503,
+  _504 = 504,
 }
 
 /**
@@ -20,6 +21,7 @@ export const ErrorHeadersOfCodes: Record<EErrorStatus, string> = {
   [EErrorStatus._404]: 'Страница не найдена',
   [EErrorStatus._500]: 'На сервере возникла ошибка',
   [EErrorStatus._503]: 'Время ожидания от сервера истекло',
+  [EErrorStatus._504]: 'Время ожидания от сервера истекло',
 };
 
 /**
@@ -31,5 +33,6 @@ export const ErrorTextsOfCodes: Record<EErrorStatus, string | undefined> = {
   [EErrorStatus._403]: 'У вас не достаточно прав.',
   [EErrorStatus._404]: 'Ошибка на сервере. Для получения информации, обратитесь к администрации магазина.',
   [EErrorStatus._500]: 'Функционал не выполняется. Ошибка на сервере. Попробуйте обновить страницу.',
-  [EErrorStatus._503]: 'Функционал временно недоступен. ',
+  [EErrorStatus._503]: 'Функционал временно недоступен.',
+  [EErrorStatus._504]: 'Функционал временно недоступен.',
 };
