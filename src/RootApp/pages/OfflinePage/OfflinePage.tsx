@@ -11,7 +11,7 @@ const OfflinePage: TOfflinePage = () => (
   <div className="offline-page">
     <div className="offline-page__container">
       <InfoCircleOutlined />
-      <h1>Ресурс временно недоступен123</h1>
+      <h1>Ресурс временно недоступен123123</h1>
       <p>Ведутся технические работы. Приносим свои извинения за неудобство.</p>
     </div>
   </div>
