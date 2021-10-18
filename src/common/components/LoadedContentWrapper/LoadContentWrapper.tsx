@@ -13,8 +13,6 @@ export type TLoadedContentWrapperProps = {
   children: any;
 };
 
-export type TLoadedContentWrapperComponent = (props: TLoadedContentWrapperProps) => any;
-
 /**
  * Обёртка для загружаемого контента
  * @param isLoading - Идёт ли загрузка
@@ -24,7 +22,7 @@ export type TLoadedContentWrapperComponent = (props: TLoadedContentWrapperProps)
  * @param errorWrapper - Обёртка для ошибки
  * @param children - Вложенность
  */
-const LoadedContentWrapper: TLoadedContentWrapperComponent = ({
+const LoadedContentWrapper: React.FC<TLoadedContentWrapperProps> = ({
   isLoading,
   overflowLoading,
   isError,

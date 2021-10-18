@@ -8,13 +8,11 @@ export type TErrorProps = {
   status?: EErrorStatus;
 };
 
-export type TErrorComponent = (props: TErrorProps) => JSX.Element;
-
 /**
  * Компонент для отрисовки ошибки
  * @param error - Номер ошибка
  */
-const ResponseError: TErrorComponent = ({status = EErrorStatus._500}) => (
+const ResponseError: React.FC<TErrorProps> = ({status = EErrorStatus._500}) => (
   <div className="error-component">
     <div className="error-component__container">
       <div className="error-component__icon">

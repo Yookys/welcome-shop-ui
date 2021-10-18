@@ -2,36 +2,41 @@
 import CleanTerminalPlugin from 'clean-terminal-webpack-plugin';
 import {DefinePlugin, HotModuleReplacementPlugin, Configuration as WebpackConfiguration} from 'webpack';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import path from 'path';
 import {FileDescriptor, WebpackManifestPlugin} from 'webpack-manifest-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
 
-import getEnv, {TMode} from './env.config';
+import getEnv, {TEnv, TMode} from './env.config';
+import pathNames from './path.config';
 
 /**
  * Общая конфигурация webpack
  */
 const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => {
-  /**
-   * Подтягиваем окружение
-   */
-  const env = getEnv(mode);
+  /** Подтягиваем окружение */
+  const env: TEnv = getEnv(mode);
 
   return {
     mode,
     bail: mode !== 'development',
-    target: mode === 'production' ? ['web', 'es5'] : 'web',
+    target: mode === 'production' ? 'browserslist' : 'web',
     devtool: mode === 'production' ? 'source-map' : 'inline-source-map',
-    entry: ['react-hot-loader/patch', path.resolve(path.dirname(__dirname), 'src', 'index')],
+    entry: ['react-hot-loader/patch', pathNames.entry],
     output: {
-      filename: `${env!.STATIC_DIR}/js/[name].[contenthash:20].js`,
-      chunkFilename: `${env!.STATIC_DIR}/js/[name].[contenthash:20].chunk.js`,
-      path: path.resolve(path.dirname(__dirname), mode !== 'development' ? 'build' : 'dist'),
+      filename: `${env.STATIC_DIR}/js/[name].[contenthash:20].bundle.js`,
+      chunkFilename: `${env.STATIC_DIR}/js/[name].[contenthash:20].chunk.js`,
+      assetModuleFilename: `${env.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
+      path: mode !== 'development' ? pathNames.outputBuild : pathNames.outputDev,
       pathinfo: true,
       publicPath: 'auto',
     },
     resolve: {
-      alias: {'react-dom': '@hot-loader/react-dom'},
+      alias: {
+        'react-dom': '@hot-loader/react-dom',
+        '@common': pathNames.commonAlias,
+        '@assets': pathNames.assetsAlias,
+        '@modules': pathNames.modulesAlias,
+        '@core': pathNames.coreAlias,
+      },
       extensions: [
         '.web.mjs',
         '.mjs',
@@ -57,7 +62,7 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
               loader: 'url-loader',
               options: {
                 mimetype: 'image/avif',
-                name: `${env!.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
+                name: `${env.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
               },
             },
             {
@@ -67,7 +72,7 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
                 {
                   loader: 'json-loader',
                   options: {
-                    name: `${env!.STATIC_DIR}/config/[name].[contenthash:20].[ext]`,
+                    name: `${env.STATIC_DIR}/configs/[name].[contenthash:20].[ext]`,
                   },
                 },
               ],
@@ -80,7 +85,7 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
                   options: {
                     dimensions: false,
                     svgProps: {focusable: '{false}'},
-                    name: `${env!.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
+                    name: `${env.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
                   },
                 },
               ],
@@ -89,7 +94,7 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
               loader: 'url-loader',
               options: {
-                name: `${env!.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
+                name: `${env.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
               },
             },
             {
@@ -116,7 +121,7 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
               loader: 'file-loader',
               exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
               options: {
-                name: `${env!.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
+                name: `${env.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
               },
             },
           ],
@@ -130,7 +135,7 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
       new ForkTsCheckerWebpackPlugin({async: false}),
       new ESLintPlugin({extensions: ['js', 'jsx', 'ts', 'tsx']}),
       new WebpackManifestPlugin({
-        fileName: 'asset-manifest.json',
+        fileName: `${env.STATIC_DIR}/configs/asset-manifest.json`,
         generate: (seed, sourceFiles) => ({
           files: sourceFiles
             .filter(({isInitial}) => !isInitial)

@@ -8,14 +8,12 @@ export type TErrorWrapperProps = {
   errorInfo?: ErrorInfo;
 };
 
-export type TErrorWrapperComponent = (props: TErrorWrapperProps) => JSX.Element;
-
 /**
  * Компонент для отображения глобальной ошибки в ErrorBoundary
  * @param error - Ошибка
  * @param errorInfo - Информация об ошибке
  */
-const ErrorWrapper: TErrorWrapperComponent = ({error, errorInfo}) => (
+const ErrorWrapper: React.FC<TErrorWrapperProps> = ({error, errorInfo}) => (
   <div className="error-wrapper">
     <div className="error-wrapper__logo">
       <Logo />

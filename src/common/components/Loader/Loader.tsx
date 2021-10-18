@@ -7,12 +7,10 @@ export type TLoaderProps = {
   overflow?: boolean;
 };
 
-export type TLoaderComponent = (props: TLoaderProps) => JSX.Element;
-
 /**
  * Компонент индикатора загрузки
  */
-const Loader: TLoaderComponent = ({overflow}) => (
+const Loader: React.FC<TLoaderProps> = ({overflow}) => (
   <div className={cn('loader', {'loader--overflow': overflow})}>
     <LoadingOutlined />
   </div>

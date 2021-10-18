@@ -7,7 +7,12 @@ import {IConfigModel} from '../../models/initAppModels';
 describe('ConfigUtil tests', () => {
   const testConfig: IConfigModel = {
     DEBUG: true,
-    SERVICES: {},
+    API_BASEPATH: '/api/v1',
+    SERVICES: {
+      SETTING: {
+        PATH: '${API_BASEPATH}/setting',
+      },
+    },
   };
 
   beforeEach(() => {

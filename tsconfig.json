@@ -8,7 +8,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
+    "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": true,
     "module": "commonjs",
     "moduleResolution": "node",
@@ -16,7 +16,14 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "@common/*": ["src/common/*"],
+      "@assets/*": ["src/common/assets/*"],
+      "@modules/*": ["src/modules/*"],
+      "@core/*": ["src/modules/Core/*"]
+    }
   },
   "include": ["./typing", "./src", "./config"],
   "exclude": ["./node_modules"]
