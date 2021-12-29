@@ -1,16 +1,15 @@
-import {AxiosError, AxiosRequestConfig, AxiosResponse} from 'axios';
+import {AxiosError, AxiosResponse} from 'axios';
 
 import {IObj} from './commonModel';
-import {EErrorStatus} from '../constants/errorConst';
 
 /** Общая модель запроса */
-export type TRequest = <T = any, K = TErrorResponseBody>(url: string, requestConfig: IRequestConfig<T, K>) => void;
+export type TRequest = <T = any, K = any>(url: string, requestConfig: IRequestConfig<T, K>) => void;
 
 /** Общая конфигурация запроса */
-export interface IRequestConfig<T = any, K = TErrorResponseBody> {
+export interface IRequestConfig<T = any, K = any> {
   queryParams?: IObj;
   body?: IObj;
-  configuration?: AxiosRequestConfig;
+  configuration?: IObj;
   requestKey?: string;
   onSuccess?: (response: AxiosResponse<T>) => void;
   onReject?: (response: AxiosError<K>) => void;
@@ -35,8 +34,8 @@ export type TUseAxiosReturns = {
 /** Модель для хука */
 export type IUseAxios = () => TUseAxiosReturns;
 
-/** Модель ошибки по-умолчанию */
-export type TErrorResponseBody = {
-  status: EErrorStatus;
-  statusText: string;
+/** Общая модель тела запроса с ошибкой */
+export type TRejectBodyDefault = {
+  statusCode: string;
+  statusMsg: string;
 };

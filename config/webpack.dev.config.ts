@@ -1,25 +1,28 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import {Configuration} from 'webpack';
-import {createProxyMiddleware, RequestHandler} from 'http-proxy-middleware';
-import {isEmpty} from 'lodash';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 
-import getEnv, {TEnv} from './env.config';
 import getCommonWebpackConfig from './webpack.common.config';
+import getEnv from './env.config';
 import pathNames from './path.config';
 
-/** Подтягиваем окружение */
-const env: TEnv = getEnv('development');
-
-/** Подтягиваем общую конфигурацию */
-const commonConfig: Configuration = getCommonWebpackConfig('development');
+/**
+ * Подтягиваем окружение
+ */
+const env = getEnv('development');
 
 /**
- * Конфигурация для разработки
+ * Подтягиваем общую конфигурацию
+ */
+const commonConfig = getCommonWebpackConfig('development');
+
+/**
+ * Конфигурация для сборки
  */
 export default {
   ...commonConfig,
   plugins: [
     ...commonConfig.plugins!,
+    new ReactRefreshWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: pathNames.htmlTemplate,
       chunks: ['main'],
@@ -35,15 +38,17 @@ export default {
       'Access-Control-Allow-Headers': '*',
       'Access-Control-Allow-Methods': '*',
     },
-    https: env.SCHEMA === 'https',
+    publicPath: '/',
     watchContentBase: true,
     disableHostCheck: true,
     compress: true,
+    contentBasePublicPath: '/',
     inline: true,
     open: true,
     hot: true,
     historyApiFallback: {
       disableDotRule: true,
+      index: '/',
     },
     clientLogLevel: 'silent',
     stats: {
@@ -63,23 +68,6 @@ export default {
       publicPath: false,
       entrypoints: false,
       builtAt: false,
-    },
-    /** Прокси-сервер */
-    after: (app: {use: (arg0: string, arg1: RequestHandler) => void}) => {
-      if (!isEmpty(env.PROXY_HOST) && !isEmpty(env.PROXY_PATH)) {
-        app.use(
-          env.PROXY_PATH!,
-          createProxyMiddleware(env.PROXY_PATH!, {
-            target: env.PROXY_HOST,
-            headers: {Origin: env.PROXY_HOST!},
-            secure: false,
-            changeOrigin: true,
-            autoRewrite: true,
-            ws: true,
-            logLevel: 'debug',
-          })
-        );
-      }
     },
   },
 };

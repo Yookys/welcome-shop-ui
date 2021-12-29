@@ -17,7 +17,7 @@ export type TUseFormReturned<T, K> = {
   clearForm: () => void;
   clearErrors: () => void;
   setErrors: (errors: IObj) => void;
-  isValidForm: () => boolean;
+  isValidForm: (silent?: boolean) => boolean;
 };
 
 export type IUseForm = <T extends IObj, K extends IObj>(

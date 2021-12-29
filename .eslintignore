@@ -1,0 +1,12 @@
+*.css
+*.scss
+*.less
+*.ttf
+*.eot
+*.woff2
+*.woff
+*.svg
+*.svgr
+*.snap
+*.jpg
+*.json

@@ -1,21 +1,28 @@
-# UI Welcome-shop.ru
+# UI СУБО "Бонусные опции"
+
+### Параметры для подключения СУБО:
+
+- URL - `{SCHEMA}://{APP_BASE_URL}:{PORT}/{UI_BASEPATH}/remoteEntry.js`;
+- Scope - `vtbBonusOptions`;
+- Module - `./BonusOptions`.
+
+Входная точка для модуля - `/src/BonusOptionsApp/BonusOptionsModuleEntry.tsx`.
 
 ### Файлы конфигураций:
 
-- `/config/setupTest.ts` - Конфигурация для enzume;
-- `/config/env.configUtil.ts` - Webpack-конфигурация окружения;
-- `/config/webpack.common.configUtil.ts` - Общая webpack-конфигурация;
-- `/config/webpack.dev.configUtil.ts` - Webpack-конфигурация для разработки;
-- `/config/webpack.prod.configUtil.ts` - Webpack-конфигурация для сборки;
-- `/public/static/configs/development.json` - Конфигурация endpoint`s для разработки;
-- `/public/static/configs/prom.json` - Конфигурация endpoint`s для продуктива;
+- `/config/env.config.ts` - Webpack-конфигурация окружения;
+- `/config/module.config.ts` - Webpack-конфигурация модулей;
+- `/config/webpack.common.config.ts` - Общая webpack-конфигурация;
+- `/config/webpack.dev.config.ts` - Webpack-конфигурация для разработки;
+- `/config/webpack.prod.config.ts` - Webpack-конфигурация для сборки;
 - `/env/.env.development` - Параметры окружения для разработки;
-- `/env/.env.production` - Параметры окружения для сборки;
-- `/src/common/constants/configConst.ts` - Перечень endpoint`s, которые должны быть сконфигурированы;
+- `/env/.env.production` - Параметры окружения для продуктива;
 - `/.babelrc` - Конфигурация для babel;
 - `/.browserslistrc` - Конфигурация поддерживаемых браузеров;
 - `/.prettierrc` - Конфигурация для библиотеки Prettier;
-- `/.eslintrc.json` - Конфигурация для ESLint.
+- `/.eslintrc.json` - Конфигурация для ESLint;
+- `/.npmrc` - Конфигурация для npm;
+- `/.yarnrc` - Конфигурация для yarn.
 
 ### Установка пакетов:
 
@@ -36,16 +43,19 @@
 - Запуск приложения в режиме разработки `npm run start`;
 - Откройте [http://127.0.0.1:3000](http://127.0.0.1:3000) чтобы посмотреть работу приложения в браузере.
   - basepath - указан в файлах окружения, но может отсутствовать.
-
+    
 
 Входная точка для разработки - `/src/index.tsx`.
 
 ### Запуск ESLint:
 
 - Установить пакеты;
-- Запуск: `npx eslint src/*`.
+- Запуск ESLint: `npx eslint src/*`.
 
-### Запуск Тестов:
+### Сборка и запуск докер-контейнера:
 
-- Установить пакеты;
-- Запуск: `jest --silent`.
+Команды запускать в следующем порядке из корня проекта:
+- Установки пакетов, сборка проекта, сборка веб-сервера, сборка образа Docker и запуск образа `npm run serve-docker`.
+
+Расположение докер-файла - `docker/Dockerfile`.
+Окружение для докер-образа - `docker/.env`.

@@ -1,18 +1,20 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import {Configuration} from 'webpack';
-import {CleanWebpackPlugin} from 'clean-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
 
-import getEnv, {TEnv} from './env.config';
+import getEnv from './env.config';
 import getCommonWebpackConfig from './webpack.common.config';
 import pathNames from './path.config';
 
-/** Подтягиваем окружение */
-const env: TEnv = getEnv('production');
+/**
+ * Подтягиваем окружение
+ */
+const env = getEnv('production');
 
-/** Подтягиваем общую конфигурацию */
-const commonConfig: Configuration = getCommonWebpackConfig('production');
+/**
+ * Подтягиваем общую конфигурацию
+ */
+const commonConfig = getCommonWebpackConfig('production');
 
 /**
  * Конфигурация для сборки
@@ -23,6 +25,7 @@ export default {
     ...commonConfig.plugins!,
     new HtmlWebpackPlugin({
       template: pathNames.htmlTemplate,
+      publicPath: '/',
       inject: true,
       minify: {
         removeComments: true,
@@ -37,7 +40,6 @@ export default {
         minifyURLs: true,
       },
     }),
-    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: `${env.STATIC_DIR}/css/[name].[contenthash:20].css`,
       chunkFilename: `${env.STATIC_DIR}/css/[name].[contenthash:20].chunk.css`,

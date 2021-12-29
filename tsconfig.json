@@ -10,7 +10,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": true,
-    "module": "commonjs",
+    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -22,7 +22,7 @@
       "@common/*": ["src/common/*"],
       "@assets/*": ["src/common/assets/*"],
       "@modules/*": ["src/modules/*"],
-      "@core/*": ["src/modules/Core/*"]
+      "@Core/*": ["src/modules/Core/*"]
     }
   },
   "include": ["./typing", "./src", "./config"],

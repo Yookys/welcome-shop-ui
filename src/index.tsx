@@ -1,12 +1,6 @@
-import './common/styles/main.scss';
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
-import 'react-app-polyfill/ie11';
-import 'react-app-polyfill/stable';
 import React from 'react';
+import ReactDOM from 'react-dom';
 
-import CoreEntry from '@core/CoreEntry';
+import CoreAppEntry from '@Core/CoreAppEntry';
 
-import initApp from './common/utils/initAppUtil';
-
-initApp(<CoreEntry />);
+ReactDOM.render(<CoreAppEntry />, document.getElementById('root'));

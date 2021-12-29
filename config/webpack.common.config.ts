@@ -1,41 +1,42 @@
 // @ts-ignore
 import CleanTerminalPlugin from 'clean-terminal-webpack-plugin';
-import {DefinePlugin, HotModuleReplacementPlugin, Configuration as WebpackConfiguration} from 'webpack';
+import {DefinePlugin, Configuration as WebpackConfiguration} from 'webpack';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import {FileDescriptor, WebpackManifestPlugin} from 'webpack-manifest-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
 
-import getEnv, {TEnv, TMode} from './env.config';
+import getEnv, {TMode} from './env.config';
 import pathNames from './path.config';
 
 /**
  * Общая конфигурация webpack
+ * @param mode - Режим запуска
  */
 const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => {
-  /** Подтягиваем окружение */
-  const env: TEnv = getEnv(mode);
+  /**
+   * Подтягиваем окружение
+   */
+  const env = getEnv(mode);
 
   return {
-    mode,
+    mode: mode === 'development' ? mode : 'production',
     bail: mode !== 'development',
-    target: mode === 'production' ? 'browserslist' : 'web',
-    devtool: mode === 'production' ? 'source-map' : 'inline-source-map',
-    entry: ['react-hot-loader/patch', pathNames.entry],
+    target: mode !== 'development' ? ['web', 'es5'] : 'web',
+    devtool: mode !== 'development' ? 'inline-source-map' : 'source-map',
+    entry: pathNames.entry,
     output: {
-      filename: `${env.STATIC_DIR}/js/[name].[contenthash:20].bundle.js`,
+      filename: `${env.STATIC_DIR}/js/[name].[contenthash:20].js`,
       chunkFilename: `${env.STATIC_DIR}/js/[name].[contenthash:20].chunk.js`,
-      assetModuleFilename: `${env.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
       path: mode !== 'development' ? pathNames.outputBuild : pathNames.outputDev,
       pathinfo: true,
       publicPath: 'auto',
+      crossOriginLoading: 'use-credentials',
     },
     resolve: {
       alias: {
-        'react-dom': '@hot-loader/react-dom',
         '@common': pathNames.commonAlias,
         '@assets': pathNames.assetsAlias,
         '@modules': pathNames.modulesAlias,
-        '@core': pathNames.coreAlias,
+        '@Core': pathNames.core,
       },
       extensions: [
         '.web.mjs',
@@ -71,9 +72,6 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
               use: [
                 {
                   loader: 'json-loader',
-                  options: {
-                    name: `${env.STATIC_DIR}/configs/[name].[contenthash:20].[ext]`,
-                  },
                 },
               ],
             },
@@ -83,19 +81,17 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
                 {
                   loader: '@svgr/webpack',
                   options: {
-                    dimensions: false,
-                    svgProps: {focusable: '{false}'},
-                    name: `${env.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
+                    prettier: false,
+                    svgo: false,
+                    svgoConfig: {
+                      plugins: [{removeViewBox: false}],
+                    },
+                    filenameCase: 'pascal',
+                    titleProp: true,
+                    ref: true,
                   },
                 },
               ],
-            },
-            {
-              test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-              loader: 'url-loader',
-              options: {
-                name: `${env.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
-              },
             },
             {
               test: /\.(ts|js)x?$/i,
@@ -104,59 +100,40 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
                 loader: 'babel-loader',
                 options: {
                   presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
-                  plugins: ['react-hot-loader/babel', ['@babel/plugin-transform-runtime', {regenerator: true}]],
+                  plugins: [['@babel/plugin-transform-runtime', {regenerator: true}]],
                   cacheDirectory: true,
                 },
               },
-            },
-            {
-              test: /\.scss$/i,
-              use: ['style-loader', 'css-loader', 'sass-loader'],
             },
             {
               test: /\.css$/i,
               use: ['style-loader', 'css-loader'],
             },
             {
-              loader: 'file-loader',
-              exclude: [/\.(js|mjs|jsx|ts|tsx)$/, /\.html$/, /\.json$/],
-              options: {
-                name: `${env.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
-              },
+              test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/],
+              use: 'url-loader',
             },
           ],
         },
       ],
     },
+    optimization:
+      mode === 'production'
+        ? {
+            minimize: true,
+            removeEmptyChunks: true,
+            removeAvailableModules: true,
+            mergeDuplicateChunks: true,
+            mangleWasmImports: true,
+            flagIncludedChunks: true,
+            concatenateModules: true,
+          }
+        : {},
     plugins: [
       new CleanTerminalPlugin(),
       new DefinePlugin({'process.env': JSON.stringify(env)}),
-      new HotModuleReplacementPlugin(),
       new ForkTsCheckerWebpackPlugin({async: false}),
       new ESLintPlugin({extensions: ['js', 'jsx', 'ts', 'tsx']}),
-      new WebpackManifestPlugin({
-        fileName: `${env.STATIC_DIR}/configs/asset-manifest.json`,
-        generate: (seed, sourceFiles) => ({
-          files: sourceFiles
-            .filter(({isInitial}) => !isInitial)
-            .reduce(
-              (files: {[key: string]: string}, file: FileDescriptor) => ({
-                [file.name!]: `/${file.path.substr(4, file.path.length)}`,
-                ...files,
-              }),
-              {}
-            ),
-          entrypoints: sourceFiles
-            .filter(({isInitial}) => isInitial)
-            .reduce(
-              (files: {[key: string]: string}, file: FileDescriptor) => ({
-                [file.name!]: `/${file.path.substr(4, file.path.length)}`,
-                ...files,
-              }),
-              {}
-            ),
-        }),
-      }),
     ],
   };
 };

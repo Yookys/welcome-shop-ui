@@ -5,6 +5,10 @@ import {StorageEvent} from '../../models/storageModel';
  * EventObserver
  */
 describe('EventObserver tests', () => {
+  /**
+   * Тестовый слушатель
+   * @param data - Событие слушателя
+   */
   const testHandler = (data: StorageEvent) => expect(data.value).toBe('test');
 
   beforeEach(() => {
