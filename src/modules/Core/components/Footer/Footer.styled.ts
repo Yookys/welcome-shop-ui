@@ -1,30 +1,24 @@
 import styled from 'styled-components';
-import {alignItems, flexbox, justifyContent} from '@common/styles/mixins';
+
+import {flexbox} from '@common/styles/mixins';
 
 /**
- * Контейнер шапки
+ * Контейнер
  * @param props - Реквизиты
  */
-export const HeaderContainer = styled.header`
+export const FooterContainer = styled.div`
   ${flexbox};
-  height: 60px;
   width: 100%;
   background-color: ${({theme}) => theme.color.background.primary};
   ${({theme}) => theme.shadow.NonClickable};
-  z-index: 1;
 `;
 
-export const HeaderWrapper = styled.div`
+/** Обёртка для футера */
+export const FooterWrapper = styled.div`
   ${flexbox};
-  ${justifyContent('space-between')};
-  ${alignItems('center')};
   width: 100%;
   min-width: 350px;
   max-width: 1264px;
   padding: 0 10px;
   margin: 0 auto;
-`;
-
-export const Logo = styled.img`
-  height: 55px;
 `;

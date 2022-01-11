@@ -10,7 +10,7 @@ export const CoreAppContainer = styled.div`
   ${flexDirection('column')};
   ${flex(1)};
   position: relative;
-  background-color: ${({theme}) => theme.color.background.primary};
+  background-color: ${({theme}) => theme.color.background.secondary};
 `;
 
 /**
@@ -24,5 +24,6 @@ export const CoreAppContentWrapper = styled.div`
   width: 100%;
   min-width: 350px;
   max-width: 1264px;
+  padding: 0 10px;
   margin: 0 auto;
 `;

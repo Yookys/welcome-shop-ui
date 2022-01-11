@@ -37,6 +37,9 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
         '@assets': pathNames.assetsAlias,
         '@modules': pathNames.modulesAlias,
         '@Core': pathNames.core,
+        '@User': pathNames.user,
+        '@Catalog': pathNames.catalog,
+        '@Dashboard': pathNames.dashboard,
       },
       extensions: [
         '.web.mjs',
@@ -110,7 +113,7 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
               use: ['style-loader', 'css-loader'],
             },
             {
-              test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/],
+              test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.jpg$/, /\.png$/, /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/],
               use: 'file-loader',
             },
           ],

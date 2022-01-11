@@ -1,6 +1,9 @@
 import {useEffect, useState} from 'react';
 import Axios, {AxiosError, AxiosRequestConfig, AxiosResponse, Canceler} from 'axios';
 
+import {useLocalStorage} from '@common/hooks/useStorage';
+import {userJwtLocalStorageKey} from '@User/constants/userStoreConst';
+
 import {isEmpty, isFunction, objectToQueryString} from '../utils/commonUtils';
 import {defaultHeaders} from '../constants/axiosConst';
 import axiosInstance from '../utils/axiosInstance';
@@ -11,6 +14,8 @@ import {IProgresses, IRequestConfig, IUseAxios, TRequest} from '../models/axiosM
  * Хук для работы с Axios
  */
 const useAxios: IUseAxios = () => {
+  /** Используем локальное хранилище с JWT */
+  const [localJwt] = useLocalStorage<string>(userJwtLocalStorageKey);
   /** Массив функций для остановки запроса */
   const [cancelFunctions, setCancelFunctions] = useState<Canceler[]>([]);
   /** Объект содержащий прогрессы запросов */
@@ -42,6 +47,7 @@ const useAxios: IUseAxios = () => {
       withCredentials: true,
       headers: {
         ...defaultHeaders,
+        ...(localJwt ? {authorization: localJwt} : {}),
         ...(config && !isEmpty(config.headers) ? config.headers : {}),
       },
       onUploadProgress: (progressEvent: any) => {

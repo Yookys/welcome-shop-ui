@@ -2,5 +2,10 @@
   "name": "PROD",
   "debug": false,
   "services": {
+    "user": {
+      "host": "http://welcome-shop-service.ru",
+      "version": 1,
+      "gatewayPath": "/user"
+    }
   }
 }

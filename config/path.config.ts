@@ -15,6 +15,9 @@ const pathNames = {
   assetsAlias: path.resolve(path.dirname(__dirname), 'src/common/assets'),
   modulesAlias: path.resolve(path.dirname(__dirname), 'src/modules'),
   core: path.resolve(path.dirname(__dirname), 'src/modules/Core'),
+  user: path.resolve(path.dirname(__dirname), 'src/modules/User'),
+  catalog: path.resolve(path.dirname(__dirname), 'src/modules/Catalog'),
+  dashboard: path.resolve(path.dirname(__dirname), 'src/modules/Dashboard'),
 };
 
 export default pathNames;

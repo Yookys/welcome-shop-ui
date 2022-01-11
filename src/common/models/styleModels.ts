@@ -92,6 +92,11 @@ export interface ZIndex {
   dropdown: number;
 }
 
+export interface Media {
+  phone: string;
+  desktop: string;
+}
+
 export interface Theme {
   color: Color;
   shadow: Shadow;
@@ -99,7 +104,6 @@ export interface Theme {
   media: Media;
 }
 
-export interface Media {
-  phone: string;
-  desktop: string;
+export interface Styled {
+  theme: Theme;
 }

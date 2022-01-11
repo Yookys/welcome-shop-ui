@@ -1,4 +1,5 @@
-import {TReducerAppConfig} from "@Core/models/appConfigModels";
+import {TReducerAppConfig} from '@Core/models/appConfigModels';
+import {TReducerUserStore} from '@User/models/userStoreModels';
 
 /** Модель хранилища */
-export interface IStore extends TReducerAppConfig {}
+export interface IStore extends TReducerAppConfig, TReducerUserStore {}

@@ -1,21 +1,22 @@
 import {Reducer} from 'redux';
 
-import {appConfigActions} from '@Core/constants/appConfigConst';
+import {appConfigActions, EServices} from '@Core/constants/appConfigConst';
 
 /** Тип события в редьюсере конфигурации приложения */
 export type TPayloadActionAppConfig = typeof appConfigActions[keyof typeof appConfigActions];
 
 /** Модель сервиса из окружения */
 export type TEnvService = {
-  version?: number;
-  gatewayPath?: string;
+  host: string;
+  version: number;
+  gatewayPath: string;
 };
 
 /** Конфигурация, полученная из окружения */
 export type TEnvConfig = {
   name: string;
   debug: boolean;
-  services: {[key: string]: TEnvService};
+  services: Record<EServices, TEnvService>;
 };
 
 /** Модель хранилища конфигураций */

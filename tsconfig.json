@@ -22,7 +22,10 @@
       "@common/*": ["src/common/*"],
       "@assets/*": ["src/common/assets/*"],
       "@modules/*": ["src/modules/*"],
-      "@Core/*": ["src/modules/Core/*"]
+      "@Core/*": ["src/modules/Core/*"],
+      "@User/*": ["src/modules/User/*"],
+      "@Catalog/*": ["src/modules/Catalog/*"],
+      "@Dashboard/*": ["src/modules/Dashboard/*"]
     }
   },
   "include": ["./typing", "./src", "./config"],

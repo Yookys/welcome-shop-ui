@@ -1,13 +1,24 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-import {HeaderContainer, HeaderWrapper} from './Header.styled';
+import logo from '@assets/images/logo.jpg';
+import HeaderUser from '@User/components/HeaderUser/HeaderUser';
+import CatalogSearch from '@Catalog/components/CatalogSearch/CatalogSearch';
+
+import {HeaderContainer, HeaderWrapper, Logo} from './Header.styled';
 
 /**
  * Шапка
  */
 const Header: React.FC = () => (
   <HeaderContainer>
-    <HeaderWrapper>Header</HeaderWrapper>
+    <HeaderWrapper>
+      <Link to="/">
+        <Logo src={logo} alt={logo} />
+      </Link>
+      <CatalogSearch />
+      <HeaderUser />
+    </HeaderWrapper>
   </HeaderContainer>
 );
 
