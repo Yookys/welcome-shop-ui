@@ -6,7 +6,7 @@ import useAppConfig from '@Core/hooks/useAppConfig';
 import {getEnvConfig} from '@Core/utils/envConfig';
 import Header from '@Core/modules/Header/Header';
 import MainLayout from '@Core/layouts/MainLayout';
-import Footer from '@Core/components/Footer/Footer';
+import Footer from '@Core/modules/Footer/Footer';
 
 import {CoreAppContainer, CoreAppContentWrapper} from './CoreApp.styled';
 
