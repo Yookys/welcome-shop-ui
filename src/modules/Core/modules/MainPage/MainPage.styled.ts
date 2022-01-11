@@ -9,5 +9,4 @@ export const MainPageContainer = styled.div`
   ${flexbox};
   ${flexDirection('column')};
   ${flex()};
-  background-color: ${({theme}) => theme.color.background.primary};
 `;
