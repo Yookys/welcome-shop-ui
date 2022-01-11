@@ -1,4 +1,5 @@
 import {createGlobalStyle} from 'styled-components';
+import {flexbox, flexDirection} from '@common/styles/mixins';
 
 /** Сброс стилей */
 export const ResetStyles = createGlobalStyle`
@@ -61,5 +62,12 @@ export const ResetStyles = createGlobalStyle`
   }
   form {
     display: contents;
+  }
+  body, #root {
+    min-height: 100%;
+  }
+  #root {
+    ${flexbox}
+    ${flexDirection('column')}
   }
 `;

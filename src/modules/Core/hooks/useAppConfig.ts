@@ -1,14 +1,14 @@
 import {useDispatch, useSelector} from 'react-redux';
 
-import {TAppConfig, TEnvConfig, TUseAppConfig, TUseAppConfigReducers} from '@common/models/appConfigModels';
-import appConfigThunk from '@common/redux/thunks/appConfigThunk';
+import {TEnvConfig, TUseAppConfig, TUseAppConfigReducers} from '@Core/models/appConfigModels';
+import appConfigThunk from "@Core/redux/thunks/appConfigThunk";
 
 /**
  * Хук для взаимодействия с хранилищем конфигурации приложения
  */
 const useAppConfig = (): TUseAppConfig => {
   /** Используем хранилище конфигурации приложения */
-  const {appConfig, envConfig} = useSelector((state: TUseAppConfigReducers) => state.appConfig);
+  const {envConfig} = useSelector((state: TUseAppConfigReducers) => state.appConfig);
   /** Используем триггер асинхронных событий */
   const dispatch = useDispatch();
   /** Деструкторизация асинхронных функций (Thunk`s) */
@@ -16,10 +16,9 @@ const useAppConfig = (): TUseAppConfig => {
 
   /**
    * Сеттер конфигурации приложения
-   * @param nextConfig - Конфигурация приложения
    * @param nextEnv - Конфигурация окружения
    */
-  const onSetAppConfigs = (nextConfig: TAppConfig, nextEnv: TEnvConfig) => dispatch(setAppConfigs(nextConfig, nextEnv));
+  const onSetAppConfigs = (nextEnv: TEnvConfig) => dispatch(setAppConfigs(nextEnv));
 
   /**
    * Сброс хранилища
@@ -27,7 +26,6 @@ const useAppConfig = (): TUseAppConfig => {
   const onResetAppConfig = () => dispatch(resetAppConfig);
 
   return {
-    appConfig,
     envConfig,
     onSetAppConfigs,
     onResetAppConfig,

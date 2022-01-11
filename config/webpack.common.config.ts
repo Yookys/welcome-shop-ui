@@ -111,7 +111,7 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
             },
             {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/, /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/],
-              use: 'url-loader',
+              use: 'file-loader',
             },
           ],
         },

@@ -1,6 +1,6 @@
-import {TEnvConfig} from '@common/models/appConfigModels';
-import devConfig from '@common/config/devConfig.json';
-import prodConfig from '@common/config/prodConfig.json';
+import {TEnvConfig} from '@Core/models/appConfigModels';
+import devConfig from '@Core/config/devConfig.json';
+import prodConfig from '@Core/config/prodConfig.json';
 
 /**
  * Геттер текущей конфигурации окружения

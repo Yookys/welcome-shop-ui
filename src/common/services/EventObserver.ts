@@ -1,5 +1,5 @@
-import {IObj} from '../../models/commonModel';
-import {StorageEventHandler, StorageEvent} from '../../models/storageModel';
+import {IObj} from '../models/commonModel';
+import {StorageEventHandler, StorageEvent} from '../models/storageModel';
 
 /**
  * Класс-слушатель событий

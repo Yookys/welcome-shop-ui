@@ -96,5 +96,10 @@ export interface Theme {
   color: Color;
   shadow: Shadow;
   zIndex: ZIndex;
-  name: 'light' | 'dark';
+  media: Media;
+}
+
+export interface Media {
+  phone: string;
+  desktop: string;
 }

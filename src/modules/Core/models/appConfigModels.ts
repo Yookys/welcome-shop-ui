@@ -1,12 +1,9 @@
 import {Reducer} from 'redux';
 
-import {appConfigActions} from '@common/constants/appConfigConst';
+import {appConfigActions} from '@Core/constants/appConfigConst';
 
 /** Тип события в редьюсере конфигурации приложения */
 export type TPayloadActionAppConfig = typeof appConfigActions[keyof typeof appConfigActions];
-
-/** Модель конфигурации UI */
-export type TAppConfig = {};
 
 /** Модель сервиса из окружения */
 export type TEnvService = {
@@ -23,13 +20,11 @@ export type TEnvConfig = {
 
 /** Модель хранилища конфигураций */
 export type TAppConfigState = {
-  appConfig?: TAppConfig;
   envConfig?: TEnvConfig;
 };
 
 /** Данные события в редьюсере */
 export type TPayloadDataAppConfigState = {
-  appConfig?: TAppConfig;
   envConfig?: TEnvConfig;
 };
 
@@ -47,7 +42,7 @@ export type TActionAppConfig = (dispatch: TDispatchAppConfig, getState: () => TU
 
 /** События в хранилище */
 export type TThunksAppConfig = {
-  setAppConfigs: (appConfig: TAppConfig, envConfig: TEnvConfig) => TActionAppConfig;
+  setAppConfigs: (envConfig: TEnvConfig) => TActionAppConfig;
   resetAppConfig: TActionAppConfig;
 };
 
@@ -56,7 +51,7 @@ export type TReducerAppConfig = Reducer<TAppConfigState, TPayloadAppConfig>;
 
 /** Модель хука */
 export interface TUseAppConfig extends TAppConfigState {
-  onSetAppConfigs: (appConfig: TAppConfig, envConfig: TEnvConfig) => void;
+  onSetAppConfigs: (envConfig: TEnvConfig) => void;
   onResetAppConfig: () => void;
 }
 

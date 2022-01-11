@@ -1,5 +1,5 @@
-import {TThunksAppConfig} from '@common/models/appConfigModels';
-import {appConfigActions} from '@common/constants/appConfigConst';
+import {TThunksAppConfig} from '@Core/models/appConfigModels';
+import {appConfigActions} from '@Core/constants/appConfigConst';
 
 /**
  * Асинхронные события для хранилища конфигурации приложения
@@ -7,11 +7,10 @@ import {appConfigActions} from '@common/constants/appConfigConst';
 const appConfigThunk: TThunksAppConfig = {
   /**
    * Сеттер конфигурации приложения
-   * @param appConfig - Конфигурация приложения
    * @param envConfig - Конфигурация окружения
    */
-  setAppConfigs: (appConfig, envConfig) => (dispatch) =>
-    dispatch({type: appConfigActions.setConfig, data: {appConfig, envConfig}}),
+  setAppConfigs: (envConfig) => (dispatch) =>
+    dispatch({type: appConfigActions.setConfig, data: {envConfig}}),
   /**
    * Сброс хранилища
    * @param dispatch - Триггер асинхронного события

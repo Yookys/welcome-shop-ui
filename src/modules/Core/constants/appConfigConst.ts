@@ -1,6 +1,3 @@
-/** Текущий хост, на котором запускается UI */
-export const localHost: string = `${window.location.protocol}//${window.location.hostname}`;
-
 /** Ключ редьюсера */
 export const appConfigAdditionalKey = '[app_config]';
 

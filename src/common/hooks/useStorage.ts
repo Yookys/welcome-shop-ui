@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from 'react';
 
-import eventObserver from '../services/EventObserver/EventObserver';
+import eventObserver from '../services/EventObserver';
 import StorageAdapter from '../utils/StorageAdapter';
 import {isEmpty} from '../utils/commonUtils';
 import {Storage, StorageEventHandler, Params, Maybe} from '../models/storageModel';

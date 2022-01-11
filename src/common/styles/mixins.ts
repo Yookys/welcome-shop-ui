@@ -119,7 +119,7 @@ export const flexWrap = (wrap: 'nowrap' | 'wrap' = 'nowrap') => {
  * @param justify - Расположение
  */
 export const justifyContent = (
-  justify: 'flex-start' | 'flex-end' | 'space-between' | 'space-around' = 'flex-start'
+  justify: 'flex-start' | 'flex-end' | 'space-between' | 'space-around' | 'center' = 'flex-start'
 ) => {
   const commonJustify = css`
     -webkit-justify-content: ${justify};
@@ -166,7 +166,7 @@ export const justifyContent = (
  * Направление элементов
  * @param align - Направление
  */
-export const alignItems = (align: 'stretch' | 'flex-start' | 'flex-end' = 'stretch') => {
+export const alignItems = (align: 'stretch' | 'flex-start' | 'flex-end' | 'center' = 'stretch') => {
   const commonAlign = css`
     -webkit-align-items: ${align};
     align-items: ${align};

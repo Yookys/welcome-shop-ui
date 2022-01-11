@@ -1,5 +1,5 @@
-import {TReducerAppConfig} from '@common/models/appConfigModels';
-import {appConfigActions} from '@common/constants/appConfigConst';
+import {TReducerAppConfig} from '@Core/models/appConfigModels';
+import {appConfigActions} from '@Core/constants/appConfigConst';
 
 /**
  * Редьюсер конфигурации приложения
@@ -10,7 +10,7 @@ const appConfigReducer: TReducerAppConfig = (state = {}, payload) => {
   switch (payload.type) {
     /** Установка конфигурации приложения */
     case appConfigActions.setConfig:
-      if (payload.data.appConfig && payload.data.envConfig) {
+      if (payload.data.envConfig) {
         return payload.data;
       }
       return state;

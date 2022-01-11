@@ -6,10 +6,6 @@
   "scripts": {
     "prepare": "husky install",
     "lint": "npx eslint src/**",
-    "test": "jest --silent",
-    "test:coverage": "jest --coverage --silent",
-    "test:watch": "jest --watch --coverage --silent",
-    "test-snapshots-update": "jest --u --coverage --silent",
     "start": "webpack serve --config config/webpack.dev.config.ts",
     "start-docker": "docker run --env-file docker/.env -d -p 8080:8080 bonus-option-test:0.0.0-test",
     "build": "npm run lint && npm run test && webpack --config config/webpack.prod.config.ts && cd webserver && npm run build-web-server",
@@ -21,9 +17,6 @@
     "@babel/plugin-proposal-decorators": "7.14.5",
     "@testing-library/react": "12.0.0",
     "@types/classnames": "2.3.1",
-    "@types/enzyme": "3.10.9",
-    "@types/enzyme-adapter-react-16": "1.0.6",
-    "@types/jest": "27.0.1",
     "@types/lodash": "4.14.171",
     "@types/node": "12.20.13",
     "@types/react": "16.9.41",
@@ -36,18 +29,10 @@
     "@types/styled-components": "5.1.18",
     "antd": "^4.18.0",
     "axios": "0.21.1",
-    "babel-jest": "27.1.0",
     "core-js": "3.13.1",
     "dayjs": "1.10.5",
-    "enzyme": "3.11.0",
-    "enzyme-adapter-react-16": "1.15.6",
-    "eslint-plugin-jest": "24.4.0",
     "history": "5.0.0",
     "identity-obj-proxy": "3.0.0",
-    "jest": "27.1.0",
-    "jest-styled-components": "7.0.5",
-    "jest-svg-transformer": "1.0.0",
-    "jest-transform-stub": "2.0.0",
     "lodash": "4.17.21",
     "prettier": "2.3.0",
     "prop-types": "15.7.2",
@@ -62,7 +47,6 @@
     "redux-thunk": "2.4.1",
     "regenerator-runtime": "0.13.7",
     "styled-components": "^5.3.3",
-    "ts-jest": "27.0.5",
     "typescript": "4.3.2",
     "web-vitals": "1.1.2"
   },
@@ -126,24 +110,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm test"
-    }
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "jsdom",
-    "setupFilesAfterEnv": [
-      "./config/setupTest.ts"
-    ],
-    "transform": {
-      "^.+\\.[jt]sx?$": "babel-jest"
-    },
-    "moduleNameMapper": {
-      ".+\\.(styl|jpg|jpeg|png|gif|eot|otf|webp|svg|svgr|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|css|less|scss)$": "identity-obj-proxy",
-      "^@common(.*)$": "<rootDir>/src/common$1",
-      "^@assets(.*)$": "<rootDir>/src/common/assets$1",
-      "^@modules(.*)$": "<rootDir>/src/modules$1",
-      "^@Core(.*)$": "<rootDir>/src/modules/Core$1"
+      "pre-commit": "npm run lint"
     }
   }
 }
