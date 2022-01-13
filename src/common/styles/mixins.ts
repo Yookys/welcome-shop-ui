@@ -5,10 +5,10 @@ import {css} from 'styled-components';
  * @param radius - Радиус скругления
  */
 export const borderRadius = (radius: number) => css`
-  -webkit-border-radius: ${radius};
-  -moz-border-radius: ${radius};
-  -ms-border-radius: ${radius};
-  border-radius: ${radius};
+  -webkit-border-radius: ${radius}px;
+  -moz-border-radius: ${radius}px;
+  -ms-border-radius: ${radius}px;
+  border-radius: ${radius}px;
 `;
 
 /**
@@ -119,7 +119,7 @@ export const flexWrap = (wrap: 'nowrap' | 'wrap' = 'nowrap') => {
  * @param justify - Расположение
  */
 export const justifyContent = (
-  justify: 'flex-start' | 'flex-end' | 'space-between' | 'space-around' | 'center' = 'flex-start'
+  justify: 'flex-start' | 'flex-end' | 'space-between' | 'space-around' | 'center' | string = 'flex-start'
 ) => {
   const commonJustify = css`
     -webkit-justify-content: ${justify};

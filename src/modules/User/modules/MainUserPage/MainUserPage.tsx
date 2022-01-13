@@ -1,8 +1,10 @@
 import React from 'react';
 
+import {MainUserPageContainer} from './MainUserPage.styled';
+
 /**
  * Основная страница пользователя
  */
-const MainUserPageContainer: React.FC = () => <MainUserPageContainer>MainUserPage</MainUserPageContainer>;
+const MainUserPage: React.FC = () => <MainUserPageContainer>MainUserPage</MainUserPageContainer>;
 
-export default React.memo(MainUserPageContainer);
+export default React.memo(MainUserPage);

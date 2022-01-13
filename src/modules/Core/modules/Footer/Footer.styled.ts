@@ -13,12 +13,22 @@ export const FooterContainer = styled.div`
   ${({theme}) => theme.shadow.NonClickable};
 `;
 
-/** Обёртка для футера */
+/**
+ * Обёртка для футера
+ * @param props - Реквизиты
+ */
 export const FooterWrapper = styled.div`
   ${flexbox};
   width: 100%;
   min-width: 350px;
   max-width: 1264px;
-  padding: 0 10px;
   margin: 0 auto;
+
+  @media ${({theme}) => theme.media.desktop} {
+    padding: 0 20px;
+  }
+
+  @media ${({theme}) => theme.media.phone} {
+    padding: 0 10px;
+  }
 `;

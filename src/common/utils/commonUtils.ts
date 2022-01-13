@@ -28,7 +28,7 @@ export const isEmpty = <T extends string | any[] | object | number | undefined |
       return Object.keys(value).length === 0;
     /** Проверка на пустую строку */
     case 'string':
-      return value.length === 0;
+      return value.trim().length === 0;
     /** Проверка что не NaN */
     case 'number':
       return !Number.isNaN(value) && !Number.isFinite(value);

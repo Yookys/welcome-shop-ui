@@ -5,4 +5,4 @@ import {TEnvService} from '@Core/models/appConfigModels';
  * @param service - Сервис
  */
 export const createUserServiceBasePath = (service?: TEnvService) => () =>
-  !service ? '' : `${service.host}/${service.version}${service.gatewayPath}`;
+  !service ? '' : `${service.host}/api${service.gatewayPath}/v${service.version}`;

@@ -1,7 +1,6 @@
 {
   "env": {
-    "browser": true,
-    "jest/globals": true
+    "browser": true
   },
   "extends": ["airbnb-typescript", "prettier", "plugin:jsdoc/recommended"],
   "parser": "@typescript-eslint/parser",
@@ -13,7 +12,7 @@
     "ecmaVersion": 2015,
     "sourceType": "module"
   },
-  "plugins": ["prettier", "react", "react-hooks", "@typescript-eslint", "import", "jest", "jsdoc"],
+  "plugins": ["prettier", "react", "react-hooks", "@typescript-eslint", "import", "jsdoc"],
   "rules": {
     "require-jsdoc": [
       "error",
@@ -38,11 +37,6 @@
     "jsdoc/newline-after-description": "off",
     "jsdoc/require-param-type": "off",
     "jsdoc/require-returns": "off",
-    "jest/no-disabled-tests": "warn",
-    "jest/no-focused-tests": "error",
-    "jest/no-identical-title": "error",
-    "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error",
     "react/no-array-index-key": "off",
     "@typescript-eslint/no-throw-literal": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",

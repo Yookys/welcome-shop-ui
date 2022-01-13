@@ -3,8 +3,9 @@ export type TUser = {
   id: string;
   login: string;
   email: string;
-  phone: string;
-  address: string;
+  phone?: string;
+  address?: string;
+  name?: string;
   access: number;
   jwt: string;
 };

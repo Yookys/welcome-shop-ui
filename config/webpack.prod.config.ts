@@ -25,7 +25,6 @@ export default {
     ...commonConfig.plugins!,
     new HtmlWebpackPlugin({
       template: pathNames.htmlTemplate,
-      publicPath: '/',
       inject: true,
       minify: {
         removeComments: true,

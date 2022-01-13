@@ -21,10 +21,23 @@ export const HeaderWrapper = styled.div`
   width: 100%;
   min-width: 350px;
   max-width: 1264px;
-  padding: 0 10px;
   margin: 0 auto;
+
+  @media ${({theme}) => theme.media.desktop} {
+    padding: 0 20px;
+  }
+
+  @media ${({theme}) => theme.media.phone} {
+    padding: 0 10px;
+  }
 `;
 
 export const Logo = styled.img`
-  height: 55px;
+  @media ${({theme}) => theme.media.desktop} {
+    height: 55px;
+  }
+
+  @media ${({theme}) => theme.media.phone} {
+    height: 40px;
+  }
 `;

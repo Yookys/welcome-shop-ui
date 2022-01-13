@@ -12,7 +12,7 @@ import {userJwtLocalStorageKey} from '@User/constants/userStoreConst';
 export type TUseUserRestReturned = {
   onLogin: (login: string, password: string) => string;
   onJwtLogin: () => void;
-  onLogOut: () => void;
+  onLogOut: () => string;
   onRegistration: (login: string, password: string, email: string, onSuccess: () => void) => string;
   isSubmitRequest: (requestKey: string | null) => boolean | undefined;
   getErrorRequest: (requestKey: string | null) => string | undefined;
@@ -94,7 +94,7 @@ const useUserRest = (): TUseUserRestReturned => {
    * @param requestId - ID запроса
    */
   const onRejectLogin = (requestId: string) => (reject: AxiosError<TRejectBodyDefault>) =>
-    setRequestError(requestId, reject.response?.data.statusText || 'Ошибка авторизации');
+    setRequestError(requestId, reject.response?.data?.statusText || 'Ошибка авторизации');
 
   /**
    * Обработка запроса на авторизацию по JWT с ошибкой
@@ -147,7 +147,12 @@ const useUserRest = (): TUseUserRestReturned => {
   /**
    * Запрос на выход из системы
    */
-  const onLogOut = (): void => onLogoutRequest({onSuccess: onSuccessLogout});
+  const onLogOut = (): string => {
+    const requestId = UUID();
+    setIsSubmitStart(requestId);
+    onLogoutRequest({onSuccess: onSuccessLogout, onFinally: setIsSubmitEnd(requestId)});
+    return requestId;
+  };
 
   /**
    * Запрос на регистрацию пользователя

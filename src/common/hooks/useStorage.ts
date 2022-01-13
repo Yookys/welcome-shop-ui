@@ -23,12 +23,14 @@ const useStorage: TUseStorageHook = <V>({key, type, storage}: Params<V>) => {
    */
   const handleSetValue = useCallback<(data: Maybe<V>) => void>(
     (data) => {
-      storage.setItem(key, data);
-      eventObserver.dispatch(type, {
-        storage,
-        key,
-        value: data,
-      });
+      if (!isEmpty(data)) {
+        storage.setItem(key, data);
+        eventObserver.dispatch(type, {
+          storage,
+          key,
+          value: data,
+        });
+      }
     },
     [key, storage]
   );

@@ -82,6 +82,7 @@ export const typography = {
     font-size: 42px;
     line-height: 52px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
   MainXL: css`
@@ -91,6 +92,7 @@ export const typography = {
     font-size: 36px;
     line-height: 44px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
   MainL: css`
@@ -100,6 +102,7 @@ export const typography = {
     font-size: 32px;
     line-height: 40px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
   MainM: css`
@@ -109,6 +112,7 @@ export const typography = {
     font-size: 28px;
     line-height: 36px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
   MainS: css`
@@ -118,6 +122,7 @@ export const typography = {
     font-size: 22px;
     line-height: 28px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
   MainXSBold: css`
@@ -127,6 +132,7 @@ export const typography = {
     font-size: 18px;
     line-height: 24px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
   MainXS: css`
@@ -136,6 +142,7 @@ export const typography = {
     font-size: 18px;
     line-height: 24px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
   AdditionalLBold: css`
@@ -145,6 +152,7 @@ export const typography = {
     font-size: 16px;
     line-height: 24px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
   AdditionalL: css`
@@ -154,6 +162,7 @@ export const typography = {
     font-size: 16px;
     line-height: 24px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
   AdditionalM: css`
@@ -163,6 +172,7 @@ export const typography = {
     font-size: 16px;
     line-height: 20px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
   AdditionalS: css`
@@ -172,6 +182,7 @@ export const typography = {
     font-size: 14px;
     line-height: 20px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
   AdditionalSBold: css`
@@ -181,6 +192,7 @@ export const typography = {
     font-size: 14px;
     line-height: 20px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
   AdditionalXS: css`
@@ -190,6 +202,7 @@ export const typography = {
     font-size: 14px;
     line-height: 16px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
   ButtonM: css`
@@ -199,6 +212,8 @@ export const typography = {
     font-size: 16px;
     line-height: 24px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
+    color: ${(p) => p.theme.color.text.primary};
   `,
   ButtonS: css`
     font-family: ${FONT_FAMILY};
@@ -207,6 +222,8 @@ export const typography = {
     font-size: 14px;
     line-height: 20px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
+    color: ${(p) => p.theme.color.text.primary};
   `,
   CaptionXS: css`
     font-family: ${FONT_FAMILY};
@@ -215,6 +232,7 @@ export const typography = {
     font-size: 12px;
     line-height: 16px;
     font-feature-settings: 'tnum' on, 'lnum' on;
+    margin-bottom: 0;
     color: ${(p) => p.theme.color.text.primary};
   `,
 } as const;

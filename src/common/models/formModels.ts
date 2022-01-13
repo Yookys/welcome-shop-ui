@@ -20,7 +20,7 @@ export type TUseFormReturned<T, K> = {
   isValidForm: (silent?: boolean) => boolean;
 };
 
-export type IUseForm = <T extends IObj, K extends IObj>(
+export type IUseForm = <T extends IObj = IObj, K extends IObj = IObj>(
   validator?: (fields: T | IObj) => K | {} | Boolean,
   initFields?: T,
   initErrors?: K

@@ -44,10 +44,9 @@ const useAxios: IUseAxios = () => {
   const onPrepareRequest = (config: IObj | undefined, requestKey?: string): object => {
     const configTmp: AxiosRequestConfig = {
       ...config,
-      withCredentials: true,
       headers: {
         ...defaultHeaders,
-        ...(localJwt ? {authorization: localJwt} : {}),
+        ...(localJwt ? {authorization: `Bearer ${localJwt}`} : {}),
         ...(config && !isEmpty(config.headers) ? config.headers : {}),
       },
       onUploadProgress: (progressEvent: any) => {

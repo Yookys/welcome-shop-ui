@@ -28,7 +28,7 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
       chunkFilename: `${env.STATIC_DIR}/js/[name].[contenthash:20].chunk.js`,
       path: mode !== 'development' ? pathNames.outputBuild : pathNames.outputDev,
       pathinfo: true,
-      publicPath: 'auto',
+      publicPath: '/',
       crossOriginLoading: 'use-credentials',
     },
     resolve: {
