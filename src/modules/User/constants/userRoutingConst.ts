@@ -1,9 +1,12 @@
+import React from 'react';
+
 import {TRoute} from '@common/models/routingModels';
-import MainUserPage from '@User/modules/MainUserPage/MainUserPage';
-import LoginPage from '@User/modules/LoginPage/LoginPage';
-import RegistrationPage from '@User/modules/RegistrationPage/RegistrationPage';
 import {isValidWithLogin, isValidWithoutLogin} from '@User/validators/routingValidators';
-import RecoveryPage from '@User/modules/RecoveryPage/RecoveryPage';
+
+const MainUserPage = React.lazy(() => import('@User/modules/MainUserPage/MainUserPage'));
+const LoginPage = React.lazy(() => import('@User/modules/LoginPage/LoginPage'));
+const RegistrationPage = React.lazy(() => import('@User/modules/RegistrationPage/RegistrationPage'));
+const RecoveryPage = React.lazy(() => import('@User/modules/RecoveryPage/RecoveryPage'));
 
 /** Перечень возможных локаций */
 export enum EUserRoutingLocations {
@@ -16,25 +19,25 @@ export enum EUserRoutingLocations {
 export const userRoutings: Record<string, TRoute> = {
   [EUserRoutingLocations.user]: {
     path: '/user',
-    component: MainUserPage,
+    Component: MainUserPage,
     exact: true,
     isValid: isValidWithLogin,
   },
   [EUserRoutingLocations.userLogin]: {
     path: '/user/login',
-    component: LoginPage,
+    Component: LoginPage,
     exact: true,
     isValid: isValidWithoutLogin,
   },
   [EUserRoutingLocations.userRegistration]: {
     path: '/user/registration',
-    component: RegistrationPage,
+    Component: RegistrationPage,
     exact: true,
     isValid: isValidWithoutLogin,
   },
   [EUserRoutingLocations.userRecovery]: {
     path: '/user/recovery',
-    component: RecoveryPage,
+    Component: RecoveryPage,
     exact: true,
     isValid: isValidWithoutLogin,
   },

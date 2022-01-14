@@ -76,7 +76,7 @@ export const TYPOGRAPHY: Typography = {
 
 export const typography = {
   MainXXL: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: 500;
     font-size: 42px;
@@ -86,7 +86,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   MainXL: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: 500;
     font-size: 36px;
@@ -96,7 +96,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   MainL: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: 500;
     font-size: 32px;
@@ -106,7 +106,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   MainM: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: 500;
     font-size: 28px;
@@ -116,7 +116,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   MainS: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: 500;
     font-size: 22px;
@@ -126,7 +126,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   MainXSBold: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -136,7 +136,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   MainXS: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -146,7 +146,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   AdditionalLBold: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -156,7 +156,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   AdditionalL: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -166,7 +166,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   AdditionalM: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -176,7 +176,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   AdditionalS: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -186,7 +186,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   AdditionalSBold: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -196,7 +196,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   AdditionalXS: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -206,7 +206,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   ButtonM: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
@@ -216,7 +216,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   ButtonS: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
@@ -226,7 +226,7 @@ export const typography = {
     color: ${(p) => p.theme.color.text.primary};
   `,
   CaptionXS: css`
-    font-family: ${FONT_FAMILY};
+    font-family: ${FONT_FAMILY} !important;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;

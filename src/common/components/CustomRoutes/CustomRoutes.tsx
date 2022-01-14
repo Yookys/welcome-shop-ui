@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import {Redirect, Route, Switch} from 'react-router-dom';
 
 import {TRoute} from '@common/models/routingModels';
 import {TUser} from '@User/models/serviceModels';
 import {isFunction} from '@common/utils/commonUtils';
+import CustomSpinner from '@common/components/CustomSpinner/CustomSpinner';
 
 /**
  * Кастомный роутинг
@@ -18,14 +19,26 @@ const CustomRoutes: React.FC<{routes: Record<string, TRoute>; user?: TUser; redi
 }) => (
   <Switch>
     {Object.keys(routes).map((routeKey) => {
-      const {isValid, exact, path, component} = routes[routeKey];
+      const {isValid, exact, path, Component} = routes[routeKey];
       if (isValid !== undefined && isFunction(isValid)) {
         if (isValid(user)) {
-          return <Route key={routeKey} exact={exact} path={path} component={component} />;
+          return (
+            <Route key={routeKey} exact={exact} path={path}>
+              <Suspense fallback={<CustomSpinner />}>
+                <Component />
+              </Suspense>
+            </Route>
+          );
         }
         return null;
       }
-      return <Route key={routeKey} exact={exact} path={path} component={component} />;
+      return (
+        <Route key={routeKey} exact={exact} path={path}>
+          <Suspense fallback={<CustomSpinner />}>
+            <Component />
+          </Suspense>
+        </Route>
+      );
     })}
     {redirectTo && <Redirect to={redirectTo} />}
   </Switch>

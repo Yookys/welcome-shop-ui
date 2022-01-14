@@ -25,7 +25,7 @@ const CoreAppEntry: React.FC = () => (
         <ThemeProvider theme={THEME}>
           <ResetStyles />
           <FontsInter />
-          <Favicon url="/favicon.jpg" />
+          <Favicon url="/static/media/favicon.jpg" />
           <CoreApp />
         </ThemeProvider>
       </Provider>

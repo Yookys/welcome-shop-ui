@@ -1,9 +1,12 @@
 import {TRoute} from '@common/models/routingModels';
-import MainPage from '@Core/modules/MainPage/MainPage';
-import User from '@User/User';
-import Catalog from '@Catalog/Catalog';
-import Dashboard from '@Dashboard/Dashboard';
+import React from 'react';
+
 import {isValidDashboard} from '@Core/validators/routingValidators';
+
+const MainPage = React.lazy(() => import('@Core/modules/MainPage/MainPage'));
+const User = React.lazy(() => import('@User/User'));
+const Catalog = React.lazy(() => import('@Catalog/Catalog'));
+const Dashboard = React.lazy(() => import('@Dashboard/Dashboard'));
 
 /** Перечень возможных локаций */
 export enum ECoreRoutingLocations {
@@ -16,20 +19,20 @@ export enum ECoreRoutingLocations {
 export const coreRoutings: Record<string, TRoute> = {
   [ECoreRoutingLocations.main]: {
     path: '/',
-    component: MainPage,
+    Component: MainPage,
     exact: true,
   },
   [ECoreRoutingLocations.user]: {
     path: '/user',
-    component: User,
+    Component: User,
   },
   [ECoreRoutingLocations.catalog]: {
     path: '/catalog',
-    component: Catalog,
+    Component: Catalog,
   },
   [ECoreRoutingLocations.dashboard]: {
     path: '/dashboard',
-    component: Dashboard,
+    Component: Dashboard,
     isValid: isValidDashboard,
   },
 };

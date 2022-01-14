@@ -9,4 +9,5 @@ export const CustomSpinnerWrapper = styled.div`
   ${flex()};
   ${alignItems('center')};
   ${justifyContent('center')};
+  min-height: 100%;
 `;

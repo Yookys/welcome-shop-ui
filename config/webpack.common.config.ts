@@ -113,8 +113,22 @@ const getCommonWebpackConfig: (mode: TMode) => WebpackConfiguration = (mode) => 
               use: ['style-loader', 'css-loader'],
             },
             {
-              test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.jpg$/, /\.png$/, /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/],
-              use: 'file-loader',
+              test: [/\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/],
+              use: {
+                loader: 'file-loader',
+                options: {
+                  name: `${env.STATIC_DIR}/font/[name].[contenthash:20].[ext]`,
+                },
+              },
+            },
+            {
+              test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.jpg$/, /\.png$/],
+              use: {
+                loader: 'file-loader',
+                options: {
+                  name: `${env.STATIC_DIR}/media/[name].[contenthash:20].[ext]`,
+                },
+              },
             },
           ],
         },

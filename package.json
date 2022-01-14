@@ -7,11 +7,7 @@
     "prepare": "husky install",
     "lint": "npx eslint src/**",
     "start": "webpack serve --config config/webpack.dev.config.ts",
-    "start-docker": "docker run --env-file docker/.env -d -p 8080:8080 bonus-option-test:0.0.0-test",
-    "build": "npm run lint && npm run test && webpack --config config/webpack.prod.config.ts && cd webserver && npm run build-web-server",
-    "build-docker": "docker build -t bonus-option-test:0.0.0-test -f docker/Dockerfile .",
-    "serve-docker": "npm run get-webserver && npm i husky -G && npm i && npm run build && npm run build-docker && npm run start-docker",
-    "get-webserver": "getWebserver.bat"
+    "build": "webpack --config config/webpack.prod.config.ts"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",

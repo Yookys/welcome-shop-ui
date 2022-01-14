@@ -1,18 +1,19 @@
-import React, {useEffect} from 'react';
+import React, {Suspense, useEffect} from 'react';
 
 import {isEmpty} from '@common/utils/commonUtils';
 import CustomSpinner from '@common/components/CustomSpinner/CustomSpinner';
 import {useLocalStorage} from '@common/hooks/useStorage';
 import useAppConfig from '@Core/hooks/useAppConfig';
 import {getEnvConfig} from '@Core/utils/envConfig';
-import Header from '@Core/modules/Header/Header';
-import MainLayout from '@Core/layouts/MainLayout';
-import Footer from '@Core/modules/Footer/Footer';
 import {userJwtLocalStorageKey} from '@User/constants/userStoreConst';
 import useUserStore from '@User/hooks/useUserStore';
 import useUserRest from '@User/hooks/useUserRest';
 
 import {CoreAppContainer, CoreAppContentWrapper} from './CoreApp.styled';
+
+const Header = React.lazy(() => import('@Core/modules/Header/Header'));
+const Footer = React.lazy(() => import('@Core/modules/Footer/Footer'));
+const MainLayout = React.lazy(() => import('@Core/layouts/MainLayout'));
 
 /**
  * Ядро
@@ -49,11 +50,13 @@ const CoreApp: React.FC = () => {
 
   return (
     <CoreAppContainer>
-      <Header />
-      <CoreAppContentWrapper>
-        <MainLayout />
-      </CoreAppContentWrapper>
-      <Footer />
+      <Suspense fallback={<CustomSpinner />}>
+        <Header />
+        <CoreAppContentWrapper>
+          <MainLayout />
+        </CoreAppContentWrapper>
+        <Footer />
+      </Suspense>
     </CoreAppContainer>
   );
 };
