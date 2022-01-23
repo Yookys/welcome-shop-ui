@@ -1,17 +1,8 @@
-# UI СУБО "Бонусные опции"
-
-### Параметры для подключения СУБО:
-
-- URL - `{SCHEMA}://{APP_BASE_URL}:{PORT}/{UI_BASEPATH}/remoteEntry.js`;
-- Scope - `vtbBonusOptions`;
-- Module - `./BonusOptions`.
-
-Входная точка для модуля - `/src/BonusOptionsApp/BonusOptionsModuleEntry.tsx`.
+# UI Интернет магазина Welcome-shop
 
 ### Файлы конфигураций:
 
 - `/config/env.config.ts` - Webpack-конфигурация окружения;
-- `/config/module.config.ts` - Webpack-конфигурация модулей;
 - `/config/webpack.common.config.ts` - Общая webpack-конфигурация;
 - `/config/webpack.dev.config.ts` - Webpack-конфигурация для разработки;
 - `/config/webpack.prod.config.ts` - Webpack-конфигурация для сборки;
